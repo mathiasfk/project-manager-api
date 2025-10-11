@@ -16,17 +16,11 @@ export class ProjectEntity implements IProject {
     @Column({nullable: true})
     description: string;
 
-    @ManyToOne(() => UserEntity, user => user.projects, {
-        nullable: false,
-        cascade: true,
-    })
+    @ManyToOne(() => UserEntity, user => user.projects)
     @JoinColumn()
     user: IUser;
 
-    @OneToMany(() => TaskEntity, task => task.project, {
-        cascade: true,
-        nullable: true
-    })
+    @OneToMany(() => TaskEntity, task => task.project)
     tasks: ITask[];
 
     @CreateDateColumn()
