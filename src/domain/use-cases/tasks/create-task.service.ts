@@ -23,6 +23,7 @@ export class CreateTaskService implements BaseUseCase {
             description: payload.task.description,
             project: { id: project.id },
             user: { id: user.id },
+            status: payload.task.status,
         });
 
         if (!newTask) {

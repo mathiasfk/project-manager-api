@@ -15,7 +15,7 @@ export class GetTaskByIdService implements BaseUseCase {
         const user = await this.usersRepository.findById(payload.userId);
         const task = await this.tasksRepository.findByUserIdAndId(user.id, payload.taskId);
 
-        if (!task || task.user.id !== user.id) {
+        if (!task) {
             throw new Error('Task not found for this user');
         }
 
