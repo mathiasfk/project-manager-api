@@ -4,6 +4,6 @@ import { IProject } from '../interface/project.interface';
 
 export interface IProjectsRepository {
   findAllByUserId(userId: number): Promise<IProject[]>;
-  findById(id: number): Promise<IProject | null>;
+  findByUserIdAndId(userId: number, id: number): Promise<IProject>;
   add(payload: DeepPartial<IProject>): Promise<IProject>;
 }

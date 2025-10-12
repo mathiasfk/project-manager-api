@@ -8,8 +8,7 @@ import { TaskEntity } from '../entities/task.entity';
 @Injectable()
 export class TasksRepositoryService
   extends Repository<TaskEntity>
-  implements ITasksRepository
-{
+  implements ITasksRepository {
   constructor(dataSource: DataSource) {
     super(TaskEntity, dataSource.createEntityManager());
   }
@@ -18,8 +17,8 @@ export class TasksRepositoryService
     return this.findBy({ user: { id: userId } });
   }
 
-  findById(id: number): Promise<ITask | null> {
-    return this.findOneBy({ id });
+  findByUserIdAndId(userId: number, id: number): Promise<ITask | null> {
+    return this.findOneByOrFail({ id, user: { id: userId } });
   }
 
   add(payload: DeepPartial<ITask>): Promise<ITask> {

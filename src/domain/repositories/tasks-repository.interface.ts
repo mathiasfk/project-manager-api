@@ -4,7 +4,7 @@ import { ITask } from '../interface/task.interface';
 
 export interface ITasksRepository {
   findAllByUserId(userId: number): Promise<ITask[]>;
-  findById(id: number): Promise<ITask | null>;
+  findByUserIdAndId(userId: number, id: number): Promise<ITask | null>;
   add(payload: DeepPartial<ITask>): Promise<ITask>;
   updateById(id: number, payload: DeepPartial<ITask>): Promise<ITask>;
 }

@@ -8,8 +8,7 @@ import { ProjectEntity } from '../entities/project.entity';
 @Injectable()
 export class ProjectsRepositoryService
   extends Repository<ProjectEntity>
-  implements IProjectsRepository
-{
+  implements IProjectsRepository {
   constructor(dataSource: DataSource) {
     super(ProjectEntity, dataSource.createEntityManager());
   }
@@ -18,8 +17,8 @@ export class ProjectsRepositoryService
     return this.findBy({ user: { id: userId } });
   }
 
-  findById(id: number): Promise<IProject | null> {
-    return this.findOneBy({ id });
+  findByUserIdAndId(userId: number, id: number): Promise<IProject> {
+    return this.findOneByOrFail({ id, user: { id: userId } });
   }
 
   add(payload: DeepPartial<IProject>): Promise<IProject> {
