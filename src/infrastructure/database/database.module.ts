@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { ProjectEntity } from './entities/project.entity';
+import { TaskEntity } from './entities/task.entity';
+import { UserEntity } from './entities/user.entity';
 import { ProjectsRepositoryService } from './repositories/projects.repository.service';
 import { TasksRepositoryService } from './repositories/tasks.repository.service';
 import { UsersRepositoryService } from './repositories/users.repository.service';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([TaskEntity, UserEntity, ProjectEntity]),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db/database.sqlite',
@@ -26,4 +30,4 @@ import { UsersRepositoryService } from './repositories/users.repository.service'
     UsersRepositoryService,
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }
