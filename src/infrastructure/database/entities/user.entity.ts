@@ -1,42 +1,50 @@
-import { IProject } from "src/domain/interface/project.interface";
-import { ITask } from "src/domain/interface/task.interface";
-import { IUser } from "src/domain/interface/user.interface";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { ProjectEntity } from "./project.entity";
-import { TaskEntity } from "./task.entity";
+import { IProject } from 'src/domain/interface/project.interface';
+import { ITask } from 'src/domain/interface/task.interface';
+import { IUser } from 'src/domain/interface/user.interface';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@Entity("users")
+import { ProjectEntity } from './project.entity';
+import { TaskEntity } from './task.entity';
+
+@Entity('users')
 export class UserEntity implements IUser {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({nullable: false})
-    firstName: string;
-    
-    @Column({nullable: false})
-    lastName: string;
+  @Column({ nullable: false })
+  firstName: string;
 
-    @Column({nullable: false, unique: true})
-    email: string;
+  @Column({ nullable: false })
+  lastName: string;
 
-    @Column({nullable: false})
-    password: string;
+  @Column({ nullable: false, unique: true })
+  email: string;
 
-    @OneToMany(() => ProjectEntity, project => project.user, {
-        cascade: true,
-        nullable: true
-    })
-    projects: IProject[];
+  @Column({ nullable: false })
+  password: string;
 
-    @OneToMany(() => TaskEntity, task => task.user, {
-        cascade: true,
-        nullable: true
-    })
-    tasks: ITask[];
+  @OneToMany(() => ProjectEntity, (project) => project.user, {
+    cascade: true,
+    nullable: true,
+  })
+  projects: IProject[];
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @OneToMany(() => TaskEntity, (task) => task.user, {
+    cascade: true,
+    nullable: true,
+  })
+  tasks: ITask[];
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

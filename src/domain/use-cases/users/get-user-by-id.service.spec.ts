@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { GetUserByIdService } from './get-user-by-id.service';
 
 describe('GetUserByIdService', () => {
