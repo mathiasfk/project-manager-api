@@ -7,5 +7,6 @@ import { GetUserByIdService } from './get-user-by-id.service';
 @Module({
   imports: [DatabaseModule],
   providers: [CreateUserService, GetUserByIdService],
+  exports: [CreateUserService, GetUserByIdService],
 })
 export class UsersModule { }

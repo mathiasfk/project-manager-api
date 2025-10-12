@@ -12,5 +12,10 @@ import { GetProjectByIdService } from './get-project-by-id.service';
     GetProjectByIdService,
     CreateProjectService,
   ],
+  exports: [
+    GetAllProjectsService,
+    GetProjectByIdService,
+    CreateProjectService,
+  ],
 })
 export class ProjectsModule { }

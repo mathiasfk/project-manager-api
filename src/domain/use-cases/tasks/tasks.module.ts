@@ -14,5 +14,11 @@ import { UpdateTaskService } from './update-task.service';
     CreateTaskService,
     UpdateTaskService,
   ],
+  exports: [
+    GetAllTasksService,
+    GetTaskByIdService,
+    CreateTaskService,
+    UpdateTaskService,
+  ],
 })
 export class TasksModule { }
