@@ -12,13 +12,13 @@ export class CreateProjectService implements BaseUseCase {
         private readonly usersRepository: UsersRepositoryService,
     ) { }
 
-    async execute(payload: CreateProjectDto, userId: number): Promise<IProject> {
+    async execute(payload: { project: CreateProjectDto, userId: number }): Promise<IProject> {
 
-        const user = await this.usersRepository.findById(userId);
+        const user = await this.usersRepository.findById(payload.userId);
 
         const newProject = await this.projectsRepository.add({
-            name: payload.name,
-            description: payload.description,
+            name: payload.project.name,
+            description: payload.project.description,
             user: { id: user.id },
         });
         if (!newProject) {

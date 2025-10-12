@@ -14,10 +14,6 @@ export class GetAllProjectsService {
         const user = await this.usersRepository.findById(userId);
         const projects = await this.projectsRepository.findAllByUserId(user.id);
 
-        if (!projects) {
-            throw new Error('No projects found for this user');
-        }
-
         return projects;
     }
 }

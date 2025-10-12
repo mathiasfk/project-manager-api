@@ -6,5 +6,6 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [ProjectsModule, TasksModule, UsersModule],
+  exports: [ProjectsModule, TasksModule, UsersModule],
 })
-export class UseCasesModule {}
+export class UseCasesModule { }
