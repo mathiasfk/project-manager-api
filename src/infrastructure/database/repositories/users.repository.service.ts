@@ -12,6 +12,9 @@ export class UsersRepositoryService
   constructor(dataSource: DataSource) {
     super(UserEntity, dataSource.createEntityManager());
   }
+  findByEmail(email: string): Promise<IUser> {
+    return this.findOneByOrFail({ email });
+  }
 
   findById(id: number): Promise<IUser> {
     return this.findOneByOrFail({ id });
