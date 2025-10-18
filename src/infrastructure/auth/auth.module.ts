@@ -13,6 +13,7 @@ import { jwtConstants } from './constants';
             signOptions: { expiresIn: '1h' },
         }),
     ],
-    providers: [AuthService]
+    providers: [AuthService],
+    exports: [AuthService],
 })
 export class AuthModule { }

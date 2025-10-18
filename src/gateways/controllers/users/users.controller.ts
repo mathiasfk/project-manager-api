@@ -2,6 +2,7 @@ import { Body, Controller, Get, NotFoundException, Param, Post, Req } from '@nes
 import { IUser } from 'src/domain/interface/user.interface';
 import { CreateUserService } from 'src/domain/use-cases/users/create-user.service';
 import { GetUserByIdService } from 'src/domain/use-cases/users/get-user-by-id.service';
+import { Public } from 'src/gateways/guards/auth-guard/auth-guard.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 
 @Controller('users')
@@ -21,6 +22,7 @@ export class UsersController {
     }
 
     @Post()
+    @Public()
     create(@Req() request: any, @Body() dto: CreateUserDto): Promise<IUser> {
         try {
             return this.createUserUseCase.execute(dto);
