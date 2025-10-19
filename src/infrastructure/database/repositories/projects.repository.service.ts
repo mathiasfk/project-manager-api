@@ -21,6 +21,13 @@ export class ProjectsRepositoryService
     return this.findOneByOrFail({ id, user: { id: userId } });
   }
 
+  findByUserIdAndIdWithTasks(userId: number, id: number): Promise<IProject> {
+    return this.findOneOrFail({
+      where: { id, user: { id: userId } },
+      relations: ['tasks'],
+    });
+  }
+
   add(payload: DeepPartial<IProject>): Promise<IProject> {
     return this.save(payload);
   }

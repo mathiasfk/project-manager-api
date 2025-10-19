@@ -13,7 +13,7 @@ export class GetProjectByIdService implements BaseUseCase {
 
     async execute(payload: { projectId: number, userId: number }): Promise<IProject> {
         const user = await this.usersRepository.findById(payload.userId);
-        const project = await this.projectsRepository.findByUserIdAndId(user.id, payload.projectId);
+        const project = await this.projectsRepository.findByUserIdAndIdWithTasks(user.id, payload.projectId);
 
         if (!project) {
             throw new Error('Project not found for this user');
